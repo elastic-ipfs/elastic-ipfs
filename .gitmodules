@@ -1,0 +1,3 @@
+[submodule "bitswap-peer"]
+	path = bitswap-peer
+	url = https://github.com/web3-storage/ipfs-elastic-provider-bitswap-peer

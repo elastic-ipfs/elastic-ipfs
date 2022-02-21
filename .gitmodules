@@ -7,3 +7,6 @@
 [submodule "publisher-lambda"]
 	path = publisher-lambda
 	url = https://github.com/web3-storage/ipfs-elastic-provider-publisher-lambda
+[submodule "uploader-lambda"]
+	path = uploader-lambda
+	url = https://github.com/web3-storage/ipfs-elastic-provider-uploader-lambda

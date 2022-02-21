@@ -10,3 +10,6 @@
 [submodule "uploader-lambda"]
 	path = uploader-lambda
 	url = https://github.com/web3-storage/ipfs-elastic-provider-uploader-lambda
+[submodule "infrastructure"]
+	path = infrastructure
+	url = https://github.com/web3-storage/ipfs-elastic-provider-infrastructure

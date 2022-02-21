@@ -4,3 +4,6 @@
 [submodule "indexer-lambda"]
 	path = indexer-lambda
 	url = https://github.com/web3-storage/ipfs-elastic-provider-indexer-lambda
+[submodule "publisher-lambda"]
+	path = publisher-lambda
+	url = https://github.com/web3-storage/ipfs-elastic-provider-publisher-lambda

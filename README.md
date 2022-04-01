@@ -26,13 +26,9 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ### Description
 
-This subsystem is responsible for the ingestion of the data uploaded to web3.storage.
+This subsystem is responsible for the ingestion of the data sent to `Uploads v2` or other buckets configured with the correct policies.
 
-The [web3.storage](http://web3.storage) backend hosted on CloudFlare hits the **[Uploader Lambda](https://github.com/web3-storage/AWS-IPFS-uploader-lambda)**, exposed via an **API Gateway**. The gateway returns an presigned AWS S3 upload URL. The CAR file is then uploaded using this URL and the file is saved on the **cars S3 bucket**.
-
-The uploading operation on S3 is configured as a trigger for the **[Indexer Lambda](https://github.com/web3-storage/AWS-IPFS-indexer-lambda).**
-
-The lambda starts streaming the CAR file from S3, updating progress on the **cars DynamoDB Table**. If there is already partial progress for the file, then the operation is resumed (this allows error recovery). If the file has already been analyzed completely, then it is skipped and the lambda ends.
+The lambda is triggered by receiving messages in SQS Indexer Topic. The message contains: bucket region, bucket name and file key (Each file to be indexed is a message). It starts streaming the CAR file from S3, updating progress on the **cars DynamoDB Table**. If there is already partial progress for the file, then the operation is resumed (this allows error recovery). If the file has already been analyzed completely, then it is skipped and the lambda ends.
 
 For each block present in the CAR, in the **blocks DynamoDB Table** the lambda stores the block type and the position information (offset and length) for the current CAR file. The table is indexed using the **multihash**, not the entire CID. If the block is already in the table, then the position information is appended to existing position for other CAR files. Positions are sorted putting leftmost positions at the beginning of the list, since this will result in faster serving in the peer subsystem (see below).
 

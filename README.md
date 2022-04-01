@@ -16,7 +16,7 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 # Detailed infrastructure architecture
 
-![IPFSSingleNode-v5.drawio.png](assets/images/IPFSSingleNode-v5.drawio.png)
+![IPFSSingleNode-v5.drawio.png](assets/images/IPFSSingleNode-v6.drawio.png)
 
 # Components
 

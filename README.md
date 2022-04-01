@@ -26,9 +26,9 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ### Description
 
-This subsystem is responsible for the ingestion of the data sent to `Uploads v2` or other buckets configured with the correct policies.
+This subsystem is responsible for the ingestion of the data sent to any bucket, as long as it has the required read policies configured.
 
-The lambda is triggered by receiving messages in SQS Indexer Topic. The message contains: bucket region, bucket name and file key (Each file to be indexed is a message). It starts streaming the CAR file from S3, updating progress on the **cars DynamoDB Table**. If there is already partial progress for the file, then the operation is resumed (this allows error recovery). If the file has already been analyzed completely, then it is skipped and the lambda ends.
+The lambda is triggered by receiving messages in SQS Indexer Topic. Each file to be indexed is a message which contains the following: bucket region, bucket name and file key. It starts streaming the CAR file from S3, updating progress on the **cars DynamoDB Table**. If there is already partial progress for the file, then the operation is resumed (this allows error recovery). If the file has already been analyzed completely, then it is skipped and the lambda ends.
 
 For each block present in the CAR, in the **blocks DynamoDB Table** the lambda stores the block type and the position information (offset and length) for the current CAR file. The table is indexed using the **multihash**, not the entire CID. If the block is already in the table, then the position information is appended to existing position for other CAR files. Positions are sorted putting leftmost positions at the beginning of the list, since this will result in faster serving in the peer subsystem (see below).
 
@@ -70,7 +70,7 @@ Once the data is discovered, the peer will request data to the **[Peer Subsystem
 
 The BitSwap peer will lookup the multihashes in the **blocks DynamoDB Table**. If there is no match, then a **DONT_HAVE** reply is immediately sent back to the remote peer. **The BitSwap peer never tries to download requested data from other peers.**
 
-If there is a match, the BitSwap peer will immediately send the block to the remote peer. It will use position informations stored in DynamoDB to perform a range S3 reading from the **cars S3 bucket** and will forward the data to the remote peer without saving it locally. 
+If there is a match, the BitSwap peer will immediately send the block to the remote peer. It will use position informations stored in DynamoDB to perform a range S3 reading from the bucket and will forward the data to the remote peer without saving it locally. 
 
 ## Additional notes
 

@@ -8,6 +8,7 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 - Re-provide into the DHT - content-discovery is delegated to a combination of hydra-booster and storetheindex nodes
 - Provide over multiple transports - WebSocket only
 - Provide data from other peers in the network - if the data isn’t stored in a CAR file that [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  has previously indexed, then it will not try to fetch from other peers.
+- Pin requests are not handled by this system
 
 ## Simplified architecture
 

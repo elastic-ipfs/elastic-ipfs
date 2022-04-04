@@ -1,30 +1,29 @@
 # ipfs-elastic-provider
 A cloud native IPFS node
 
-# Assumptions
+## Assumptions
 
 The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  does **NOT** need to:
 
 - Re-provide into the DHT - content-discovery is delegated to a combination of hydra-booster and storetheindex nodes
 - Provide over multiple transports - WebSocket only
-- Accept writes as anything other than a 100MB max size CAR file - pin requests are handled separately
 - Provide data from other peers in the network - if the data isn’t stored in a CAR file that [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  has previously indexed, then it will not try to fetch from other peers.
 
-# Simplified architecture
+## Simplified architecture
 
 ![IPFS Elastic Provider.jpg](assets/images/IPFS_Elastic_Provider.jpg)
 
-# Detailed infrastructure architecture
+## Detailed infrastructure architecture
 
 ![IPFSSingleNode-v5.drawio.png](assets/images/IPFSSingleNode-v6.drawio.png)
 
-# Components
+## Components
 
-## Indexing subsystem
+### Indexing subsystem
 
 ![simplified-indexing.jpg](assets/images/simplified-indexing.jpg)
 
-### Description
+#### Description
 
 This subsystem is responsible for the ingestion of the data sent to any bucket, as long as it has the required read policies configured.
 
@@ -34,11 +33,11 @@ For each block present in the CAR, in the **blocks DynamoDB Table** the lambda s
 
 For each block present in the CAR, after DynamoDB informations are stored, the lambda also publishes the multihash to the M**ultihashes SQS topic**.
 
-## Publishing subsystem
+### Publishing subsystem
 
 ![simplified-publishing.jpg](assets/images/simplified-publishing.jpg)
 
-### Description
+#### Description
 
 This subsystem takes care of the discovery part of the IPFS stack. In order to do this, it relies on the existence of already deployed [storetheindex nodes](https://github.com/filecoin-project/storetheindex) and [hydra-booster node](https://github.com/libp2p/hydra-booster)s.
 
@@ -58,11 +57,11 @@ The **storetheindex node** will in the future, with its own policies, download a
 
 The **hydra-booster nodes** will lookup content in the indexer nodes and this makes indexed data discoverable by regular IPFS via DHT. 
 
-## Peer subsystem
+### Peer subsystem
 
 ![simplified-peer.jpg](assets/images/simplified-peer.jpg)
 
-### Description
+#### Description
 
 A regular IPFS peer relies on hydra-booster nodes (and therefore storetheindex nodes) to discover the location of data.
 

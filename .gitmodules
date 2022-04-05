@@ -13,3 +13,6 @@
 [submodule "infrastructure"]
 	path = infrastructure
 	url = https://github.com/web3-storage/ipfs-elastic-provider-infrastructure
+[submodule "bucket-to-indexer-lambda"]
+	path = bucket-to-indexer-lambda
+	url = https://github.com/web3-storage/ipfs-elastic-provider-bucket-to-indexer

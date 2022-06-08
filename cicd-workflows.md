@@ -32,9 +32,20 @@ The steps for it will vary depending if component should be deployed to a lambda
 
  ## Lambda
 
+This diagram shows the complete process of introducing a new feature for a lambda into all three environments.
+
 ![Lambda Workflow](assets/images/workflows-lambdas.png)
 
- ==> TODO: Talk about OIDC security
+This is the main step
+ ```
+Run Deploy
+```
+
+That step means that after the AWS credentials have been properly configured, the lambda update-function-code is executed with the docker image tag that has been provided by `build workflow`.
+
+### Security 
+
+[AWS is configured to trust GitHub's OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). That means repos work with tokens instead of storing long-lived AWS credentials in secrets.
 
 
  ## Kubernetes
@@ -42,6 +53,10 @@ The steps for it will vary depending if component should be deployed to a lambda
 ![Lambda Workflow](assets/images/workflows-kubernetes.png)
 
  ==> TODO: No credentials required
+
+### Security
+
+There is no need of configuring any kind of access from GitHub, it stores zero long or short lived credentials.
 
 
  # Shared Workflows

@@ -23,6 +23,27 @@ Run Test => Run Lint => Build Artifact (Docker Image)
 
  # Deploy Workflow
 
- ## Lambdas
+ This is triggered when a build workflow has finished running successfully for the long-lived branches. Each of these is associated with the environments that should be updated.
 
- ## Bitswap Peer
+- dev: dev (Automatic)
+- main: Staging (Automatic) and Prod (Requires manual approval)
+
+The steps for it will vary depending if component should be deployed to a lambda or Kubernetes.
+
+ ## Lambda
+
+![Lambda Workflow](assets/images/workflows-lambdas.png)
+
+ ==> TODO: Talk about OIDC security
+
+
+ ## Kubernetes
+
+![Lambda Workflow](assets/images/workflows-kubernetes.png)
+
+ ==> TODO: No credentials required
+
+
+ # Shared Workflows
+
+ ==> TODO: Just link with that repo

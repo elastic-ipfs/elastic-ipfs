@@ -60,13 +60,17 @@ It will have at least these major steps:
 Clone Helm Deployment Repo => Update Image Tag => Commit and push 
 ```
 
+The only thing that actually happens at this GH workflow is to update the image tag in a helm values spec, using the value which came from build workflow.
+
 Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`ipfs-elastic-provider-bitswap-peer`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer) has a correspondent [`ipfs-elastic-provider-bitswap-peer-deployment`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer-deployment) repo.
 
 This follows a [GitOps Pull Model approach](https://dzone.com/articles/why-is-a-pull-vs-a-push-pipeline-important), which means that GH doesn't push to K8S.
 
 ArgoCD is running inside the cluster monitoring possible changes on its correspondent environment spec. For example: ArgoCD in K8S dev is always syncing with `values-dev.yaml` file.
 
+
 When an image tag is updated in the `values-<env>.yaml` file, ArgoCD automatically knows  how to change the `deployment` spec, so that new pods can be created.
+
 
 ### Security
 
@@ -75,4 +79,4 @@ There is no need of configuring any kind of access from GitHub, it stores zero l
 
  # Shared Workflows
 
- ==> TODO: Just link with that repo
+[This repo](https://github.com/ipfs-elastic-provider/shared-workflows) stores generic workflows that are reused by several components.

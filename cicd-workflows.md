@@ -50,9 +50,23 @@ That step means that after the AWS credentials have been properly configured, th
 
  ## Kubernetes
 
+ This diagram shows the complete process of introducing a new feature for an application running in Kubernetes into all three environments.
+
+
 ![Lambda Workflow](assets/images/workflows-kubernetes.png)
 
- ==> TODO: No credentials required
+It will have at least these major steps:
+ ```
+Clone Helm Deployment Repo => Update Image Tag => Commit and push 
+```
+
+Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`ipfs-elastic-provider-bitswap-peer`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer) has a correspondent [`ipfs-elastic-provider-bitswap-peer-deployment`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer-deployment) repo.
+
+This follows a [GitOps Pull Model approach](https://dzone.com/articles/why-is-a-pull-vs-a-push-pipeline-important), which means that GH doesn't push to K8S.
+
+ArgoCD is running inside the cluster monitoring possible changes on its correspondent environment spec. For example: ArgoCD in K8S dev is always syncing with `values-dev.yaml` file.
+
+When an image tag is updated in the `values-<env>.yaml` file, ArgoCD automatically knows  how to change the `deployment` spec, so that new pods can be created.
 
 ### Security
 

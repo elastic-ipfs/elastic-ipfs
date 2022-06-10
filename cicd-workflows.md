@@ -21,7 +21,7 @@ Run Test => Run Lint => Build Artifact (Docker Image)
 ```
 
 
- # Deploy Workflow
+ ## Deploy Workflow
 
  This is triggered when a build workflow has finished running successfully for the long-lived branches. Each of these is associated with the environments that should be updated.
 

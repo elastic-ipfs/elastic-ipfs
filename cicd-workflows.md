@@ -30,7 +30,7 @@ Run Test => Run Lint => Build Artifact (Docker Image)
 
 The steps for it will vary depending if component should be deployed to a lambda or Kubernetes.
 
- ## Lambda
+ ### Lambda
 
 This diagram shows the complete process of introducing a new feature for a lambda into all three environments.
 
@@ -43,12 +43,12 @@ Run Deploy
 
 That step means that after the AWS credentials have been properly configured, the lambda update-function-code is executed with the docker image tag that has been provided by `build workflow`.
 
-### Security 
+#### Security 
 
 [AWS is configured to trust GitHub's OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). That means repos work with tokens instead of storing long-lived AWS credentials in secrets.
 
 
- ## Kubernetes
+ ### Kubernetes
 
  This diagram shows the complete process of introducing a new feature for an application running in Kubernetes into all three environments.
 
@@ -72,7 +72,7 @@ ArgoCD is running inside the cluster monitoring possible changes on its correspo
 When an image tag is updated in the `values-<env>.yaml` file, ArgoCD automatically knows  how to change the `deployment` spec, so that new pods can be created.
 
 
-### Security
+#### Security
 
 There is no need of configuring any kind of access from GitHub, it stores zero long or short lived credentials.
 

@@ -77,6 +77,14 @@ When an image tag is updated in the `values-<env>.yaml` file, ArgoCD automatical
 There is no need of configuring any kind of access from GitHub, it stores zero long or short lived credentials.
 
 
- # Shared Workflows
+## Shared Workflows
 
 [This repo](https://github.com/ipfs-elastic-provider/shared-workflows) stores generic workflows that are reused by several components.
+
+## Important Notes
+
+- Keep `main` and `dev` branches as sync as possible. 
+- Keep `staging` and `prod` environments as sync as possible. Remember you **can't** add new code that is just for `prod` without releasing everything that's deployed in `staging`.
+- Don't forget to merge/rebase from the target branch when doing PR.
+- As stated by the [Gitflow Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), we can hotfix by creating PRs directly from `main`.
+- Avoid been too bureaucratic about this process. If you're building a new feature that doesn't make sense going to `dev` first (for whatever reason), open the PR directly from `main` and **be happy**

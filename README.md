@@ -12,7 +12,7 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ## Simplified architecture
 
-![IPFS Elastic Provider.jpg](assets/images/IPFS_Elastic_Provider.jpg)
+![IPFS Elastic Provider.jpg](assets/images/EIPFS-simplified-complete.png)
 
 ## Detailed infrastructure architecture
 

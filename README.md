@@ -12,7 +12,7 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ## Simplified architecture
 
-![IPFS Elastic Provider.jpg](assets/images/IPFS_Elastic_Provider.jpg)
+![IPFS Elastic Provider.jpg](assets/images/EIPFS-simplified-complete.png)
 
 ## Detailed infrastructure architecture
 
@@ -22,7 +22,7 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ### Indexing subsystem
 
-![simplified-indexing.jpg](assets/images/simplified-indexing.jpg)
+![simplified-indexing.png](assets/images/EIPFS-simplified-indexing.png)
 
 #### Description
 
@@ -36,7 +36,7 @@ For each block present in the CAR, after DynamoDB informations are stored, the l
 
 ### Publishing subsystem
 
-![simplified-publishing.jpg](assets/images/simplified-publishing.jpg)
+![simplified-publishing.jpg](assets/images/EIPFS-simplified-publishing.png)
 
 #### Description
 
@@ -60,7 +60,7 @@ The **hydra-booster nodes** will lookup content in the indexer nodes and this ma
 
 ### Peer subsystem
 
-![simplified-peer.jpg](assets/images/simplified-peer.jpg)
+![simplified-peer.jpg](assets/images/EIPFS-simplified-peer.png)
 
 #### Description
 

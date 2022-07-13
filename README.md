@@ -14,10 +14,6 @@ The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-
 
 ![IPFS Elastic Provider.jpg](assets/images/EIPFS-simplified-complete.png)
 
-## Detailed infrastructure architecture
-
-![IPFSSingleNode-v5.drawio.png](assets/images/IPFSSingleNode-v6.drawio.png)
-
 ## Components
 
 ### Indexing subsystem
@@ -77,3 +73,7 @@ If there is a match, the BitSwap peer will immediately send the block to the rem
 For the architecture to work properly, the **Publishing Subsystem** and the **Peer Subsystem** must use the same peer information and keys. To achieve this, both system will download a JSON serialized peer from a separate **Configuration S3 bucket**. The configuration of this feature is achieved on both components using environment variables.
 
 For the storetheindex nodes to be able to download advertisements without additional serving components, the **Advertisements S3 Bucket** and all its content must be publicly accessible.
+
+## Detailed infrastructure architecture
+
+![IPFSSingleNode-v5.drawio.png](assets/images/IPFSSingleNode-v6.drawio.png)

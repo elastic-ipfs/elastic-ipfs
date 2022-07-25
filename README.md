@@ -1,18 +1,18 @@
-# ipfs-elastic-provider
-A cloud native IPFS node
+# Elastic IPFS
+Cloud-native scalable IPFS content provider
 
 ## Assumptions
 
-The first version of [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  does **NOT** need to:
+The first version of [Elastic IPFS](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  does **NOT** need to:
 
 - Re-provide into the DHT - content-discovery is delegated to a combination of hydra-booster and storetheindex nodes
 - Provide over multiple transports - WebSocket only
-- Provide data from other peers in the network - if the data isn’t stored in a CAR file that [IPFS Elastic Provider](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  has previously indexed, then it will not try to fetch from other peers.
+- Provide data from other peers in the network - if the data isn’t stored in a CAR file that [Elastic IPFS](https://www.notion.so/IPFS-Elastic-Provider-5ebc108219054f608b0ddd3a20122b63)  has previously indexed, then it will not try to fetch from other peers.
 - Pin requests are not handled by this system
 
 ## Simplified architecture
 
-![IPFS Elastic Provider.jpg](assets/images/EIPFS-simplified-complete.png)
+![Elastic IPFS](assets/images/EIPFS-simplified-complete.png)
 
 ## Components
 
@@ -38,7 +38,7 @@ For each block present in the CAR, after DynamoDB informations are stored, the l
 
 This subsystem takes care of the discovery part of the IPFS stack. In order to do this, it relies on the existence of already deployed [storetheindex nodes](https://github.com/filecoin-project/storetheindex) and [hydra-booster node](https://github.com/libp2p/hydra-booster)s.
 
-The **[Publishing Lambda](https://github.com/web3-storage/AWS-IPFS-publishing-lambda)** is deployed twice, with two different phases and different handlers (controlled via environment variable).
+The **[Publishing Lambda](https://github.com/elastic-ipfs/publishing-lambda)** is deployed twice, with two different phases and different handlers (controlled via environment variable).
 
 The first phase, called **Content**, consumes messages (which are multihashes) from the M**ultihashes SQS topic** (fed by Indexer Lambda). Messages are consumed in batches on 10000 maximum length. Each batch is uploaded as an entries file (DAG-JSON) on the **Advertisement S3 Bucket**. The CID of the file is published to the **Advertisement SQS topic**.
 
@@ -62,7 +62,7 @@ The **hydra-booster nodes** will lookup content in the indexer nodes and this ma
 
 A regular IPFS peer relies on hydra-booster nodes (and therefore storetheindex nodes) to discover the location of data.
 
-Once the data is discovered, the peer will request data to the **[Peer Subsystem](https://github.com/web3-storage/AWS-IPFS-bitswap-peer)**, which is deployed as an **EKS Autoscaling Cluster** with a **WebSocket ELB** on front.
+Once the data is discovered, the peer will request data to the **[Peer Subsystem](https://github.com/elastic-ipfs/bitswap-peer)**, which is deployed as an **EKS Autoscaling Cluster** with a **WebSocket ELB** on front.
 
 The BitSwap peer will lookup the multihashes in the **blocks DynamoDB Table**. If there is no match, then a **DONT_HAVE** reply is immediately sent back to the remote peer. **The BitSwap peer never tries to download requested data from other peers.**
 

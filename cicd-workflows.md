@@ -62,7 +62,7 @@ Clone Helm Deployment Repo => Update Image Tag => Commit and push
 
 The only thing that actually happens at this GH workflow is to update the image tag in a helm values spec, using the value which came from build workflow.
 
-Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`ipfs-elastic-provider-bitswap-peer`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer) has a correspondent [`ipfs-elastic-provider-bitswap-peer-deployment`](https://github.com/ipfs-elastic-provider/ipfs-elastic-provider-bitswap-peer-deployment) repo.
+Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`bitswap-peer`](https://github.com/elastic-ipfs/bitswap-peer) has a correspondent [`bitswap-peer-deployment`](https://github.com/elastic-ipfs/bitswap-peer-deployment) repo.
 
 This follows a [GitOps Pull Model approach](https://dzone.com/articles/why-is-a-pull-vs-a-push-pipeline-important), which means that GH doesn't push to K8S.
 
@@ -79,7 +79,7 @@ There is no need of configuring any kind of access from GitHub, it stores zero l
 
 ## Shared Workflows
 
-[This repo](https://github.com/ipfs-elastic-provider/shared-workflows) stores generic workflows that are reused by several components.
+[This repo](https://github.com/elastic-ipfs/shared-workflows) stores generic workflows that are reused by several components.
 
 ## Important Notes
 

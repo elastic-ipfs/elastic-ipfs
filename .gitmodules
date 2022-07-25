@@ -10,16 +10,12 @@
 [submodule "publisher-lambda"]
 	path = publisher-lambda
 	url = https://github.com/elastic-ipfs/publisher-lambda
-[submodule "uploader-lambda"]
-	path = uploader-lambda
-	url = https://github.com/elastic-ipfs/uploader-lambda
 [submodule "infrastructure"]
 	path = infrastructure
 	url = https://github.com/elastic-ipfs/infrastructure
 [submodule "bucket-to-indexer-lambda"]
 	path = bucket-to-indexer-lambda
 	url = https://github.com/elastic-ipfs/bucket-to-indexer
-
 [submodule "side-indexer-lambda"]
 	path = side-indexer-lambda
 	url = git@github.com:elastic-ipfs/side-indexer-lambda.git

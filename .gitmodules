@@ -1,6 +1,9 @@
 [submodule "bitswap-peer"]
 	path = bitswap-peer
 	url = https://github.com/elastic-ipfs/bitswap-peer
+[submodule "bitswap-peer-deployment"]
+	path = bitswap-peer-deployment
+	url = git@github.com:elastic-ipfs/bitswap-peer-deployment.git
 [submodule "indexer-lambda"]
 	path = indexer-lambda
 	url = https://github.com/elastic-ipfs/indexer-lambda
@@ -16,6 +19,4 @@
 [submodule "bucket-to-indexer-lambda"]
 	path = bucket-to-indexer-lambda
 	url = https://github.com/elastic-ipfs/bucket-to-indexer
-[submodule "bitswap-peer-deployment"]
-	path = bitswap-peer-deployment
-	url = git@github.com:elastic-ipfs/bitswap-peer-deployment.git
+

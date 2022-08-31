@@ -1,6 +1,6 @@
 # CI/CD Workflows
 
-All Elastic Provider component repositories follow the [Gitflow Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). They can have any number of short-lived feature branches and two long-lived branches, which are: `dev` and `main`.
+All Elastic Provider component repositories follow the [Feature Branch Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). They can have any number of short-lived feature branches and two long-lived branches, which are:  `main` and `dev`. All PRs should be targetting `main`, [while `dev` branch is uniquely used for validating big features](#dev-branch).
 
 ## Build Workflow
 
@@ -14,7 +14,7 @@ Run Test => Run Lint => Build Artifact (Docker Image) => Publish Artifact
 
 ### PR
 
- All pull requests from a feature branch (or hotfix) to the long-lived branches also trigger a workflow. It has the same steps described above, except for the last one: it doesn't publish any artifacts. The focus is validation and quality. This guarantees a **fail fast** strategy, making possible to identify problems as soon as possible.
+ All pull requests from a feature branch to the `main` also trigger a workflow. It has the same steps described above, except for the last one: it doesn't publish any artifacts. The focus is validation and quality. This guarantees a **fail fast** strategy, making possible to identify problems as soon as possible.
 
  ```
 Run Test => Run Lint => Build Artifact (Docker Image)

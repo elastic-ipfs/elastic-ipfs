@@ -1,6 +1,6 @@
 # CI/CD Workflows
 
-All Elastic Provider component repositories follow the [Feature Branch Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). They can have any number of short-lived feature branches and two long-lived branches, which are:  `main` and `dev`. All PRs should be targetting `main`, [while `dev` branch is used as an optional way of validating big features](#dev-branch).
+All Elastic Provider component repositories follow the [Feature Branch Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). They can have any number of short-lived feature branches and a single long-lived branch, which is `main`. All PRs should be targetting `main`.
 
 ## Build Workflow
 
@@ -23,10 +23,9 @@ Run Test => Run Lint => Build Artifact (Docker Image)
 
  ## Deploy Workflow
 
- This is triggered when a build workflow has finished running successfully for the long-lived branches. Each of these is associated with the environments that should be updated.
+ This is triggered when a build workflow has finished running successfully for the `main` branch, which is associated with the environments that should be updated.
 
 - main: Staging (Automatic) and Prod (Requires manual approval)
-- dev: dev (Automatic)
 
 The steps for it will vary depending if component should be deployed to a lambda or Kubernetes.
 
@@ -80,12 +79,6 @@ There is no need of configuring any kind of access from GitHub, it stores zero l
 ## Shared Workflows
 
 [This repo](https://github.com/elastic-ipfs/shared-workflows) stores generic workflows that are reused by several components.
-
-## `Dev` branch
-
-Using this branch is optional. Pushing to it will update `dev` environment. No need to keep it synced with `main`, or to keep any relevant history, instead use:  
-
-`git push --set-upstream origin <feature-branch>:dev -f`
 
 ## Important Notes
 

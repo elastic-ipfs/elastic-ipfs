@@ -1,6 +1,6 @@
 # CI/CD Workflows
 
-All Elastic Provider component repositories follow the [Gitflow Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). They can have any number of short-lived feature branches and two long-lived branches, which are: `dev` and `main`.
+All Elastic Provider component repositories follow the [Feature Branch Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). They can have any number of short-lived feature branches and a single long-lived branch, which is `main`. All PRs should be targetting `main`.
 
 ## Build Workflow
 
@@ -14,7 +14,7 @@ Run Test => Run Lint => Build Artifact (Docker Image) => Publish Artifact
 
 ### PR
 
- All pull requests from a feature branch (or hotfix) to the long-lived branches also trigger a workflow. It has the same steps described above, except for the last one: it doesn't publish any artifacts. The focus is validation and quality. This guarantees a **fail fast** strategy, making possible to identify problems as soon as possible.
+ All pull requests from a feature branch to `main` also trigger a workflow. It has the same steps described above, except for the last one: it doesn't publish any artifacts. The focus is validation and quality. This guarantees a **fail fast** strategy, making possible to identify problems as soon as possible.
 
  ```
 Run Test => Run Lint => Build Artifact (Docker Image)
@@ -23,9 +23,8 @@ Run Test => Run Lint => Build Artifact (Docker Image)
 
  ## Deploy Workflow
 
- This is triggered when a build workflow has finished running successfully for the long-lived branches. Each of these is associated with the environments that should be updated.
+ This is triggered when a build workflow has finished running successfully for the `main` branch, which is associated with the environments that should be updated.
 
-- dev: dev (Automatic)
 - main: Staging (Automatic) and Prod (Requires manual approval)
 
 The steps for it will vary depending if component should be deployed to a lambda or Kubernetes.
@@ -50,7 +49,7 @@ That step means that after the AWS credentials have been properly configured, th
 
  ### Kubernetes
 
- This diagram shows the complete process of introducing a new feature for an application running in Kubernetes into all three environments.
+ This diagram shows the complete process of introducing a new feature for an application running in Kubernetes into different environments.
 
 
 ![Lambda Workflow](assets/images/workflows-kubernetes.png)
@@ -66,7 +65,7 @@ Applications which run on Kubernetes have their specs managed by helm charts. Th
 
 This follows a [GitOps Pull Model approach](https://dzone.com/articles/why-is-a-pull-vs-a-push-pipeline-important), which means that GH doesn't push to K8S.
 
-ArgoCD is running inside the cluster monitoring possible changes on its correspondent environment spec. For example: ArgoCD in K8S dev is always syncing with `values-dev.yaml` file.
+ArgoCD is running inside the cluster monitoring possible changes on its correspondent environment spec. For example: ArgoCD in K8S staging is always syncing with `values-staging.yaml` file.
 
 
 When an image tag is updated in the `values-<env>.yaml` file, ArgoCD automatically knows  how to change the `deployment` spec, so that new pods can be created.
@@ -83,8 +82,5 @@ There is no need of configuring any kind of access from GitHub, it stores zero l
 
 ## Important Notes
 
-- Keep `main` and `dev` branches as sync as possible. 
 - Keep `staging` and `prod` environments as sync as possible. Remember you **can't** add new code that is just for `prod` without releasing everything that's deployed in `staging`.
 - Don't forget to merge/rebase from the target branch when doing PR.
-- As stated by the [Gitflow Workflow strategy](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), we can hotfix by creating PRs directly from `main`.
-- Avoid been too bureaucratic about this process. If you're building a new feature that doesn't make sense going to `dev` first (for whatever reason), open the PR directly from `main` and **be happy**

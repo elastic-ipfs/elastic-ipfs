@@ -2,7 +2,7 @@
 
 ## Required environment variables
 
-These environment variables are not required when running inside AWS services, like EC2 or lambdas. [Roles are configured in infrastructure](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html).
+These are not required when running inside AWS services, like EC2 or lambdas. [Roles are configured in infrastructure](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html).
 
 | Name                        | Default            | Description                                                                    |
 | --------------------------- | ------------------ | ------------------------------------------------------------------------------ |

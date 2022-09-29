@@ -4,7 +4,7 @@ All Elastic Provider component repositories follow the [Feature Branch Workflow 
 
 ## Build Workflow
 
-When new changes are introduced to the long-lived branches, they trigger a build workflow.
+When new changes are introduced to the long-lived branch, they trigger a build workflow.
 
 It will have at least these major steps:
 
@@ -31,7 +31,7 @@ The steps for it will vary depending if component should be deployed to a lambda
 
  ### Lambda
 
-This diagram shows the complete process of introducing a new feature for a lambda into all three environments.
+This diagram shows the complete process of introducing a new feature for a lambda into all environments.
 
 ![Lambda Workflow](assets/images/workflows-lambdas.png)
 

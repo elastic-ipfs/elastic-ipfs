@@ -55,7 +55,7 @@ That step means that after the AWS credentials have been properly configured, th
 
 Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`bitswap-peer`](https://github.com/elastic-ipfs/bitswap-peer) has a correspondent [`bitswap-peer-deployment`](https://github.com/elastic-ipfs/bitswap-peer-deployment) repo. 
 
-To start an upgrade, the image tag set in deployment repo must be changed. Use the targeted image version, which was generated and published during build workflow. This is done through PR review and approval process.
+To start an upgrade, the image tag specified in deployment repo must be changed. Use the targeted image version, which was generated and published during build workflow. This is done through PR review and approval process.
 
 This follows a [GitOps Pull Model approach](https://dzone.com/articles/why-is-a-pull-vs-a-push-pipeline-important), which means that GH doesn't push to K8S.
 

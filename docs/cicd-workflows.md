@@ -33,7 +33,7 @@ The steps for it will vary depending if component should be deployed to a lambda
 
 This diagram shows the complete process of introducing a new feature for a lambda into all environments.
 
-![Lambda Workflow](assets/images/workflows-lambdas.png)
+![Lambda Workflow](../assets/images/workflows-lambdas.png)
 
 This is the main step
  ```
@@ -51,7 +51,7 @@ That step means that after the AWS credentials have been properly configured, th
 
  This diagram shows the complete process of introducing a new feature for an application running in Kubernetes into different environments.
 
-![k8s Workflow](assets/images/workflows-kubernetes.png)
+![k8s Workflow](../assets/images/workflows-kubernetes.png)
 
 Applications which run on Kubernetes have their specs managed by helm charts. Those are stored in another repo with `**-deployment` sufix. Example: [`bitswap-peer`](https://github.com/elastic-ipfs/bitswap-peer) has a correspondent [`bitswap-peer-deployment`](https://github.com/elastic-ipfs/bitswap-peer-deployment) repo. 
 

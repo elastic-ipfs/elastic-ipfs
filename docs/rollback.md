@@ -6,11 +6,11 @@ This process have the goal of mitigating the impacts caused by unexpected behavi
 
 ## Lambdas
 
-
+To rollback the code running in lambdas, it's necessary to revert a bad commit/PR that is in the main branch. [Build and Deploy workflows](https://github.com/elastic-ipfs/elastic-ipfs/blob/main/docs/cicd-workflows.md#lambda) will take care of redeploying to stable version. 
 
 ## Kubernetes + ArgoCD Rollouts
 
-The [canary deployment strategy](https://argoproj.github.io/argo-rollouts/concepts/#canary) guarantees that a smaller percentage of users will be affected.
+The [canary deployment strategy](https://argoproj.github.io/argo-rollouts/concepts/#canary) guarantees that only a smaller percentage of users will be affected.
 
 These are the steps to completely remove the unhealthy pods:
 

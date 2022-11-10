@@ -23,4 +23,4 @@ These are the steps to completely remove the unhealthy pods:
 - Commit desired version back to the stable one, this is done in the k8s specs repo, which ArgoCD is syncing from 
 - Rollout is back to `healthy` state
 
-Also refer to [Scaledown New Replicaset on Aborted Rollout](https://argoproj.github.io/argo-rollouts/features/scaledown-aborted-rs/), and [FAQ about ArgoCD Rollouts rollbacks](https://argoproj.github.io/argo-rollouts/FAQ/#rollbacks).
+Also refer to [FAQ about ArgoCD Rollouts rollbacks](https://argoproj.github.io/argo-rollouts/FAQ/#rollbacks).
